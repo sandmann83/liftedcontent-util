@@ -1,0 +1,96 @@
+package eu.sbradl.liftedcontent.util
+
+import org.specs2.mutable._
+import org.specs2.runner.JUnitRunner
+import org.junit.runner.RunWith
+import de.sbradl.liftedcontent.util.Count
+
+@RunWith(classOf[JUnitRunner])
+class count extends SpecificationWithJUnit {
+  
+  val abc = "abc"
+  val abc2 = abc * 2
+  val abc3 = abc * 3
+  
+  val abcLeadingWhitespace = " abc"
+  val abcTrailingWhitespace = "abc "
+
+  val abcXml = <b>a<i>b</i>c</b>
+  val abc2Xml = <div><b>a<i>b</i>c</b><b>a<i>b</i>c</b></div>
+  val abc3Xml = <div><b>a<i>b</i>c</b><b>a<i>b</i>c</b><b>a<i>b</i>c</b></div>
+
+  val abcLeadingWhitespaceXml = <b> a<i>b</i>c</b>
+  val abcTrailingWhitespaceXml = <b>a<i>b </i>c </b>
+  
+  "Count in plain text" should {
+    
+    "find one 'a' in 'abc'" in {
+      Count("a") in abc must beEqualTo (1)
+    }
+    
+    "find two 'a' in 'abcabc'" in {
+      Count("a") in abc2 must beEqualTo (2)
+    }
+    
+    "find three 'a' in 'abcabcabc'" in {
+      Count("a") in abc3 must beEqualTo (3)
+    }
+    
+    "find one 'a' in ' abc'" in {
+      Count("a") in abcLeadingWhitespace must beEqualTo (1)
+    }
+    
+    "find one 'a' in 'abc '" in {
+      Count("a") in abcTrailingWhitespace must beEqualTo (1)
+    }
+    
+  }
+  
+  "Count in xml" should {
+    
+    "find one a in <b>a<i>b</i>c</b>" in {
+      Count("a") in abcXml must beEqualTo (1)
+    }
+    
+    "find two a's in <div><b>a<i>b</i>c</b><b>a<i>b</i>c</b></div>" in {
+      Count("a") in abc2Xml must beEqualTo (2)
+    }
+    
+    "find three a's in <div><b>a<i>b</i>c</b><b>a<i>b</i>c</b><b>a<i>b</i>c</b></div>" in {
+      Count("a") in abc3Xml must beEqualTo (3)
+    }
+    
+    "find one a <b> a<i>b</i>c</b>" in {
+      Count("a") in abcLeadingWhitespaceXml must beEqualTo (1)
+    }
+    
+    "find one a's <b>a<i>b </i>c </b>" in {
+      Count("a") in abcTrailingWhitespaceXml must beEqualTo (1)
+    }
+    
+  }
+  
+  "Count caseinsensitive in plain text" should {
+    
+    "find one 'A' in 'abc'" in {
+      Count("A", caseInsensitive = true) in abc must beEqualTo (1)
+    }
+    
+    "find two 'aB' in 'abcabc'" in {
+      Count("aB", caseInsensitive = true) in abc2 must beEqualTo (2)
+    }
+    
+    "find three 'A' in 'abcabcabc'" in {
+      Count("A", caseInsensitive = true) in abc3 must beEqualTo (3)
+    }
+    
+    "find one 'A' in ' abc'" in {
+      Count("A", caseInsensitive = true) in abcLeadingWhitespace must beEqualTo (1)
+    }
+    
+    "find one 'A' in 'abc '" in {
+      Count("A", caseInsensitive = true) in abcTrailingWhitespace must beEqualTo (1)
+    }
+    
+  }
+}
