@@ -25,23 +25,23 @@ class count extends SpecificationWithJUnit {
   "Count in plain text" should {
     
     "find one 'a' in 'abc'" in {
-      Count("a") in abc must beEqualTo (1)
+      Count("a") in abc must be equalTo 1
     }
     
     "find two 'a' in 'abcabc'" in {
-      Count("a") in abc2 must beEqualTo (2)
+      Count("a") in abc2 must be equalTo 2
     }
     
     "find three 'a' in 'abcabcabc'" in {
-      Count("a") in abc3 must beEqualTo (3)
+      Count("a") in abc3 must be equalTo 3
     }
     
     "find one 'a' in ' abc'" in {
-      Count("a") in abcLeadingWhitespace must beEqualTo (1)
+      Count("a") in abcLeadingWhitespace must be equalTo 1
     }
     
     "find one 'a' in 'abc '" in {
-      Count("a") in abcTrailingWhitespace must beEqualTo (1)
+      Count("a") in abcTrailingWhitespace must be equalTo 1
     }
     
   }
@@ -49,23 +49,23 @@ class count extends SpecificationWithJUnit {
   "Count in xml" should {
     
     "find one a in <b>a<i>b</i>c</b>" in {
-      Count("a") in abcXml must beEqualTo (1)
+      Count("a") in abcXml must be equalTo 1
     }
     
     "find two a's in <div><b>a<i>b</i>c</b><b>a<i>b</i>c</b></div>" in {
-      Count("a") in abc2Xml must beEqualTo (2)
+      Count("a") in abc2Xml must be equalTo 2
     }
     
     "find three a's in <div><b>a<i>b</i>c</b><b>a<i>b</i>c</b><b>a<i>b</i>c</b></div>" in {
-      Count("a") in abc3Xml must beEqualTo (3)
+      Count("a") in abc3Xml must be equalTo 3
     }
     
     "find one a <b> a<i>b</i>c</b>" in {
-      Count("a") in abcLeadingWhitespaceXml must beEqualTo (1)
+      Count("a") in abcLeadingWhitespaceXml must be equalTo 1
     }
     
     "find one a's <b>a<i>b </i>c </b>" in {
-      Count("a") in abcTrailingWhitespaceXml must beEqualTo (1)
+      Count("a") in abcTrailingWhitespaceXml must be equalTo 1
     }
     
   }
@@ -73,23 +73,23 @@ class count extends SpecificationWithJUnit {
   "Count caseinsensitive in plain text" should {
     
     "find one 'A' in 'abc'" in {
-      Count("A", caseInsensitive = true) in abc must beEqualTo (1)
+      Count("A", caseInsensitive = true) in abc must be equalTo 1
     }
     
     "find two 'aB' in 'abcabc'" in {
-      Count("aB", caseInsensitive = true) in abc2 must beEqualTo (2)
+      Count("aB", caseInsensitive = true) in abc2 must be equalTo 2
     }
     
     "find three 'A' in 'abcabcabc'" in {
-      Count("A", caseInsensitive = true) in abc3 must beEqualTo (3)
+      Count("A", caseInsensitive = true) in abc3 must be equalTo 3
     }
     
     "find one 'A' in ' abc'" in {
-      Count("A", caseInsensitive = true) in abcLeadingWhitespace must beEqualTo (1)
+      Count("A", caseInsensitive = true) in abcLeadingWhitespace must be equalTo 1
     }
     
     "find one 'A' in 'abc '" in {
-      Count("A", caseInsensitive = true) in abcTrailingWhitespace must beEqualTo (1)
+      Count("A", caseInsensitive = true) in abcTrailingWhitespace must be equalTo 1
     }
     
   }
