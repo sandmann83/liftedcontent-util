@@ -38,13 +38,4 @@ trait Module {
   def init {
     
   }
-  
-  def needsSetup = setupMenu match {
-    case Some(_) => true
-    case None => false
-  }
-  
-  def setupMenu: Option[ConvertableToMenu] = None
-  
-  def isInstalled = true
 }
