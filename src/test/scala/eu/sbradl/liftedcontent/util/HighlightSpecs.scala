@@ -54,4 +54,19 @@ class HighlightSpecs extends SpecificationWithJUnit {
     }
 
   }
+  
+  "Highlight case-sensitive" should {
+    "create <mark>a</mark>bc from <b>a<i>b</i>c</b>" in {
+      Highlight("A", false) in abcXml must be equalTo Unparsed("<mark>a</mark>bc")
+    }
+    
+    "create <mark>test</mark><mark>TEST</mark><mark>TeSt</mark> from <b>test<i>TEST</i>TeSt</b>" in {
+      Highlight("test", false) in <b>test<i>TEST</i>TeSt</b> must be equalTo Unparsed("<mark>test</mark><mark>TEST</mark><mark>TeSt</mark>")
+    }
+    
+    "create '<mark>test</mark> entry' from 'Test entry'" in {
+      Highlight("test", false) in "Test entry" must be equalTo Unparsed("<mark>Test</mark> entry")
+    }
+  }
+  
 }

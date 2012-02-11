@@ -73,23 +73,23 @@ class count extends SpecificationWithJUnit {
   "Count caseinsensitive in plain text" should {
     
     "find one 'A' in 'abc'" in {
-      Count("A", caseInsensitive = true) in abc must be equalTo 1
+      Count("A", caseSensitive = false) in abc must be equalTo 1
     }
     
     "find two 'aB' in 'abcabc'" in {
-      Count("aB", caseInsensitive = true) in abc2 must be equalTo 2
+      Count("aB", caseSensitive = false) in abc2 must be equalTo 2
     }
     
     "find three 'A' in 'abcabcabc'" in {
-      Count("A", caseInsensitive = true) in abc3 must be equalTo 3
+      Count("A", caseSensitive = false) in abc3 must be equalTo 3
     }
     
     "find one 'A' in ' abc'" in {
-      Count("A", caseInsensitive = true) in abcLeadingWhitespace must be equalTo 1
+      Count("A", caseSensitive = false) in abcLeadingWhitespace must be equalTo 1
     }
     
     "find one 'A' in 'abc '" in {
-      Count("A", caseInsensitive = true) in abcTrailingWhitespace must be equalTo 1
+      Count("A", caseSensitive = false) in abcTrailingWhitespace must be equalTo 1
     }
     
   }
