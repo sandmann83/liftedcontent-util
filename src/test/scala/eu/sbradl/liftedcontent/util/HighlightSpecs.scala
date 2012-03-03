@@ -1,9 +1,9 @@
 package eu.sbradl.liftedcontent.util
 
-import org.specs2.mutable._
-import org.specs2.runner.JUnitRunner
 import org.junit.runner.RunWith
-import de.sbradl.liftedcontent.util.Highlight
+import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.runner.JUnitRunner
+
 import scala.xml.Unparsed
 
 @RunWith(classOf[JUnitRunner])

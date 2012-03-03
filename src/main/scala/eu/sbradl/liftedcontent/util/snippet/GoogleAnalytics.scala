@@ -1,4 +1,4 @@
-package de.sbradl.liftedcontent.util.snippet
+package eu.sbradl.liftedcontent.util.snippet
 
 import net.liftweb.util.Helpers._
 import net.liftweb.http.S

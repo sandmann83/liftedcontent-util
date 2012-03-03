@@ -1,4 +1,4 @@
-package de.sbradl.liftedcontent.util
+package eu.sbradl.liftedcontent.util
 
 import net.liftweb.common.Empty
 import net.liftweb.common.Full

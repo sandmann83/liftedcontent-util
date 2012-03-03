@@ -1,4 +1,4 @@
-package de.sbradl.liftedcontent.util
+package eu.sbradl.liftedcontent.util
 
 import net.liftweb.http.js.JsCmd
 import net.liftweb.http.SHtml

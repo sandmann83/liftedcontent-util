@@ -1,4 +1,4 @@
-package de.sbradl.liftedcontent.util
+package eu.sbradl.liftedcontent.util
 
 object UtilModule extends Module {
 

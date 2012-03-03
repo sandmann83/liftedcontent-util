@@ -1,4 +1,4 @@
-package de.sbradl.liftedcontent.util
+package eu.sbradl.liftedcontent.util
 
 import net.liftweb.mapper.BaseMetaMapper
 import net.liftweb.sitemap.ConvertableToMenu

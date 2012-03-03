@@ -1,4 +1,4 @@
-package de.sbradl.liftedcontent.util
+package eu.sbradl.liftedcontent.util
 
 import scala.xml.NodeSeq
 import net.liftweb.util.Helpers._
