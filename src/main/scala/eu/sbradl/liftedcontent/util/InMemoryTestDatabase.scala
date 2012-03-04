@@ -10,14 +10,22 @@ import net.liftweb.mapper.BaseMetaMapper
 import net.liftweb.mapper.DB
 import net.liftweb.mapper.Schemifier
 
+/**
+ * This is a helper object for initializing an in-memory db for usage in tests.
+ */
 object InMemoryTestDatabase {
 
-  val vendor = new StandardDBVendor("org.h2.Driver",
+  private val vendor = new StandardDBVendor("org.h2.Driver",
     "jdbc:h2:mem:lift;DB_CLOSE_DELAY=-1", Empty, Empty)
 
   Logger.setup = Full(net.liftweb.util.LoggingAutoConfigurer())
   Logger.setup.foreach { _.apply() }
 
+  /**
+   * Initializes the test database.
+   * 
+   * @param models A list of mappers which should be schemified.
+   */
   def init(models: BaseMetaMapper*) {
     DB.defineConnectionManager(DefaultConnectionIdentifier, vendor)
     Schemifier.destroyTables_!!(Schemifier.infoF _, models:_*)

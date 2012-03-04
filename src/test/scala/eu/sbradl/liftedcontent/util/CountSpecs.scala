@@ -5,7 +5,7 @@ import org.specs2.mutable.SpecificationWithJUnit
 import org.specs2.runner.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class count extends SpecificationWithJUnit {
+class CountSpecs extends SpecificationWithJUnit {
   
   val abc = "abc"
   val abc2 = abc * 2
