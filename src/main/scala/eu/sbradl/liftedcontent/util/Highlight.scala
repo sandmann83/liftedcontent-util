@@ -23,7 +23,7 @@ class Highlight(term: String, caseSensitive: Boolean) {
    * Highlights the term in the given node sequence using the HTML5 "mark"-Tag.
    * 
    * @param nodes The input in which the term should be highlighted.
-   * @returns A node sequence with the occurences of the term being highlighted.
+   * @returns A node sequence with the occurrences of the term being highlighted.
    */
   def in(nodes: NodeSeq): NodeSeq = in(nodes.text)
   
@@ -31,7 +31,7 @@ class Highlight(term: String, caseSensitive: Boolean) {
    * Highlights the term in the given text using the HTML5 "mark"-Tag.
    * 
    * @param text The input in which the term should be highlighted.
-   * @returns A node sequence with the occurences of the term being highlighted.
+   * @returns A node sequence with the occurrences of the term being highlighted.
    */
   def in(text: String): NodeSeq = caseSensitive match {
     case true => Unparsed(text.replace(term, "<mark>" + term + "</mark>"))
