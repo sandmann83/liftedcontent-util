@@ -9,7 +9,7 @@ class Tweet {
     val size = S.attr("size").openOr("small")
     
     <a href="https://twitter.com/share" class="twitter-share-button" data-size={size} data-lang={lang}>Tweet</a>
-	<script>
+	<tail><script>
 			!function(d, s, id) {{
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (!d.getElementById(id)) {{
@@ -19,6 +19,6 @@ class Tweet {
 				fjs.parentNode.insertBefore(js, fjs);
 			}}
 		}}(document, "script", "twitter-wjs");
-	</script>
+	</script></tail>
   }
 }
