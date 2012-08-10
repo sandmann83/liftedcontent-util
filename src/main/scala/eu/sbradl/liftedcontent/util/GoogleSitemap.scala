@@ -10,6 +10,7 @@ import net.liftweb.common.Empty
 import java.util.Date
 import net.liftweb.util.TimeHelpers._
 import java.text.SimpleDateFormat
+import org.joda.time.DateTime
 
 object ChangeFrequency extends Enumeration { 
     val Always = Value(1, "always")
@@ -27,14 +28,14 @@ object GoogleSitemap extends RestHelper {
   var changeFrequency: Box[() => ChangeFrequency.Value] = Empty
   var lastMod: Box[() => Date] = Empty
   
-  private def baseUrl = "http://%s%s/".format(S.hostName, S.contextPath)
+  var baseUrl = () => "http://%s%s/".format(S.hostName, S.contextPath)
 
   serve {
     case "sitemap" :: _ Get _ => {
       XmlResponse(
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
           <url>
-            <loc>{baseUrl}</loc>
+            <loc>{baseUrl()}</loc>
             { changeFrequency.map(fn => <changefreq>{ fn().toString }</changefreq>).openOr(NodeSeq.Empty) }
             <priority>1.0</priority>
             { lastMod.map(fn => <lastmod>{ format(fn()) }</lastmod>).openOr(NodeSeq.Empty) }
@@ -43,7 +44,7 @@ object GoogleSitemap extends RestHelper {
             urls.map(fn => fn() map {
               case (url, lastModified, priority) => {
                 <url>
-                  <loc>{baseUrl + url}</loc>
+                  <loc>{baseUrl() + url}</loc>
                   <lastmod>{format(lastModified)}</lastmod>
                   <priority>{priority.toString}</priority>
                 </url>
@@ -55,9 +56,9 @@ object GoogleSitemap extends RestHelper {
   }
 
   private def format(date: Date) = {
-    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ")
-
-    formatter.format(date)
+    val dt: DateTime = new DateTime(date)
+    
+    dt.toString("yyyy-MM-dd'T'HH:mmZZ")
   }
 
 }

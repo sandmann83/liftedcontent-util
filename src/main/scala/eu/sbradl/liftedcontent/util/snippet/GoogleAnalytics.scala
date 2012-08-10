@@ -25,11 +25,12 @@ class GoogleAnalytics {
     val minimumRunMode = Props.RunModes.withName(S.attr("mode").openOr("Production"))
 
     val id = trackingID
+    val anonymizeIp = S.attr("anonymize").map(_.toBoolean).openOr(false)
 
     "*" #> {
       Props.mode.id >= minimumRunMode.id match {
         case true => id match {
-          case Full(trackingID) => Full(scriptTag(trackingID))
+          case Full(trackingID) => Full(scriptTag(trackingID, anonymizeIp))
           case _ => {
             if (Props.mode.id <= Props.RunModes.Test.id) error
             else Empty
@@ -46,11 +47,12 @@ class GoogleAnalytics {
     case _ => Props.get("google.analytics.id")
   }
 
-  private def scriptTag(trackingID: String) = 
+  private def scriptTag(trackingID: String, anonymize: Boolean) = 
     <script type="text/javascript">
 	var _gaq = _gaq || [];
 	_gaq.push([ '_setAccount', '{ trackingID }' ]);
 	_gaq.push([ '_trackPageview' ]);
+  	{if(anonymize) "_gaq.push([ '_gat._anonymizeIp' ]);"}
 
 	(function() {{
 		var ga = document.createElement('script');
